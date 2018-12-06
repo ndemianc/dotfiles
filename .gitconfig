@@ -1,3 +1,12 @@
 [user]
 	name = Sergii Demianchuk
 	email = sdemian@softserveinc.com
+[filter "lfs"]
+	clean = git-lfs clean %f
+	smudge = git-lfs smudge %f
+	required = true
+[core]
+	editor = vim
+[credential]
+	helper = "aws configure codecommit credential-helper "
+	UseHttpPath = true

@@ -1,7 +1,9 @@
 ﻿"necessary on some Linux distros for pathogen to properly load bundles
-filetype on
-filetype off
 syntax enable
+syntax on
+filetype on           " Enable filetype detection
+filetype indent on    " Enable filetype-specific indenting
+filetype plugin on    " Enable filetype-specific plugins
 
 "load pathgen managed plugins
 execute pathogen#infect()
@@ -9,7 +11,7 @@ Helptags
 
 "Use Vim settings, rather then Vi settings (much better!).
 "This must be first, because it changes other options as a side effect.
-" set nocompatible
+set nocompatible
 
 "allow backspacing (removing) over everything in insert mode
 " set backspace=indent,eol,start
@@ -214,12 +216,12 @@ if has("gui_running")
     endif
 
     if has("gui_mac") || has("gui_macvim")
-        set guifont=Menlo:h12
+        set guifont=Menlo:h14
         set transparency=7
     endif
 
     if has("gui_win32") || has("gui_win32s")
-        set guifont=Consolas:h12
+        set guifont=Consolas:h14
         set enc=utf-8
     endif
 else
@@ -343,6 +345,8 @@ endfunction
 " NERDTree settings
 nmap wm :NERDTree<cr>
 let NERDTreeIgnore=['\.swp$']
+autocmd StdinReadPre * let s:std_in=1
+autocmd VimEnter * if argc() == 0 && !exists("s:std_in") | NERDTree | endif
 
 nnoremap <Esc>A <up>
 nnoremap <Esc>B <down>
@@ -395,7 +399,7 @@ nmap <Leader> <Plug>(EasyAlign)
 
 " set colorscheme
 colorscheme molokai
-" set background=dark
+" set background
 
 " Airline configuration
 let g:airline_theme="badwolf"
@@ -410,3 +414,20 @@ set synmaxcol=120
 
 " Disable syntastic javascript checker
 let g:syntastic_javascript_checkers = ['']
+let g:ackprg = 'ag --vimgrep'
+
+" JSX in .js files
+let g:jsx_ext_required = 0
+
+autocmd FileType ruby,eruby let g:rubycomplete_buffer_loading = 1
+autocmd FileType ruby,eruby let g:rubycomplete_classes_in_global = 1
+autocmd FileType ruby,eruby let g:rubycomplete_rails = 1
+
+" VueJS settings
+autocmd FileType vue syntax sync fromstart
+let g:vue_disable_pre_processors=1
+autocmd BufRead,BufNewFile *.vue setlocal filetype=vue.html.javascript.css
+let g:syntastic_html_tidy_quiet_messages = { "level" : "warnings" }
+let g:syntastic_html_tidy_ignore_errors = [
+    \ '<template> is not recognized!'
+    \ ]

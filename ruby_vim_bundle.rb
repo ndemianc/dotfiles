@@ -10,7 +10,8 @@ git_bundles = [
   'git@github.com:tpope/vim-rails.git',
   'git@github.com:ecomba/vim-ruby-refactoring.git',
   'git@github.com:vim-ruby/vim-ruby.git',
-  'git@github.com:tpope/vim-surround.git'
+  'git@github.com:tpope/vim-surround.git',
+  'git@github.com:garbas/vim-snipmate.git'
 ]
 
 require 'fileutils'

@@ -3,21 +3,20 @@
 git_bundles = [
   'git@github.com:rking/ag.vim.git',
   'git@github.com:ctrlpvim/ctrlp.vim.git',
-  'git@github.com:yegappan/mru.git',
-  'git@github.com:scrooloose/syntastic.git',
+  'git@github.com:preservim/nerdtree.git',
+  'git@github.com:tomtom/tlib_vim.git',
   'git@github.com:tpope/vim-commentary.git',
   'git@github.com:tpope/vim-fugitive.git',
   'git@github.com:tpope/vim-rails.git',
-  'git@github.com:ecomba/vim-ruby-refactoring.git',
+  'git@github.com:tpope/vim-rhubarb.git',
   'git@github.com:vim-ruby/vim-ruby.git',
-  'git@github.com:tpope/vim-surround.git',
-  'git@github.com:garbas/vim-snipmate.git'
+  'git@github.com:tpope/vim-surround.git'
 ]
 
 require 'fileutils'
 require 'open-uri'
 
-bundles_dir = File.join(File.dirname(__FILE__), "bundle")
+bundles_dir = File.join(File.expand_path('~'), ".vim/bundle")
 
 unless File.directory?(bundles_dir)
   FileUtils.mkdir_p(bundles_dir)

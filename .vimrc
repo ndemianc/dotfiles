@@ -211,7 +211,7 @@ if has("gui_running")
 
     if has("gui_gnome")
         set term=gnome-256color
-        colorscheme molokai
+        colorscheme monokai
         set guifont=Monospace\ Bold\ 11
     endif
 
@@ -228,16 +228,16 @@ else
     if $COLORTERM == 'gnome-terminal'
         " set term=gnome-256color
         set t_ut=
-        colorscheme molokai
+        colorscheme monokai
     else
         if $TERM == 'xterm-256color' || $TERM == 'xterm'
             set t_Co=256
-            colorscheme molokai
+            colorscheme monokai
             " set background=dark
         endif
         if $TERM == 'screen-256color' || $TERM == 'screen'
             set term=screen-256color
-            colorscheme molokai
+            colorscheme monokai
             " Disable Background Color Erase (BCE) so that color schemes
             " work properly when Vim is used inside tmux and GNU screen.
             " See also
@@ -333,18 +333,10 @@ vmap <D-[> <gv
 vmap <D-]> >gv
 
 
-"snipmate setup
-source ~/.vim/snippets/support_functions.vim
-
-autocmd vimenter * call s:SetupSnippets()
-
-function! s:SetupSnippets()
-    " call ExtractSnips("~/.vim/snippets/ruby", "ruby")
-endfunction
-
 " NERDTree settings
 nmap wm :NERDTree<cr>
 let NERDTreeIgnore=['\.swp$']
+let g:NERDTreeNodeDelimiter = "\u00a0"
 autocmd StdinReadPre * let s:std_in=1
 autocmd VimEnter * if argc() == 0 && !exists("s:std_in") | NERDTree | endif
 
@@ -398,7 +390,7 @@ vmap <Enter> <Plug>(EasyAlign)
 nmap <Leader> <Plug>(EasyAlign)
 
 " set colorscheme
-colorscheme molokai
+colorscheme monokai
 " set background
 
 " Airline configuration
@@ -431,3 +423,18 @@ let g:syntastic_html_tidy_quiet_messages = { "level" : "warnings" }
 let g:syntastic_html_tidy_ignore_errors = [
     \ '<template> is not recognized!'
     \ ]
+
+" A command-line fuzzy finder, If installed using Homebrew
+set rtp+=/usr/local/opt/fzf
+
+" Exclude files and directories using Vim's wildignore and CtrlP's own g:ctrlp_custom_ignore:
+"
+set wildignore+=*/tmp/*,*.so,*.swp,*.zip,coverage     " MacOSX/Linux
+set wildignore+=*\\tmp\\*,*.swp,*.zip,*.exe  " Windows
+
+let g:ctrlp_custom_ignore = '\v[\/]\.(git|hg|svn)$'
+let g:ctrlp_custom_ignore = {
+  \ 'dir':  '\v[\/]\.(git|hg|svn)$',
+  \ 'file': '\v\.(exe|so|dll)$',
+  \ 'link': 'some_really_really_bad_symbolic_links',
+  \ }

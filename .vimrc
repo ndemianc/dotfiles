@@ -1,13 +1,8 @@
-﻿"necessary on some Linux distros for pathogen to properly load bundles
-syntax enable
+﻿syntax enable
 syntax on
 filetype on           " Enable filetype detection
 filetype indent on    " Enable filetype-specific indenting
 filetype plugin on    " Enable filetype-specific plugins
-
-"load pathgen managed plugins
-execute pathogen#infect()
-Helptags
 
 "Use Vim settings, rather then Vi settings (much better!).
 "This must be first, because it changes other options as a side effect.
@@ -390,7 +385,7 @@ vmap <Enter> <Plug>(EasyAlign)
 nmap <Leader> <Plug>(EasyAlign)
 
 " set colorscheme
-colorscheme monokai
+colorscheme Argonaut
 " set background
 
 " Airline configuration

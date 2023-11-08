@@ -10,13 +10,14 @@ git_bundles = [
   'git@github.com:tpope/vim-rails.git',
   'git@github.com:tpope/vim-rhubarb.git',
   'git@github.com:vim-ruby/vim-ruby.git',
-  'git@github.com:tpope/vim-surround.git'
-]
+  'git@github.com:tpope/vim-surround.git',
+  'git@github.com:flazz/vim-colorschemes.git'
+].freeze
 
 require 'fileutils'
 require 'open-uri'
 
-bundles_dir = File.join(File.expand_path('~'), ".vim/bundle")
+bundles_dir = File.join(File.expand_path('~'), ".vim/pack/bundle/start")
 
 unless File.directory?(bundles_dir)
   FileUtils.mkdir_p(bundles_dir)

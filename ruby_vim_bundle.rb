@@ -34,3 +34,15 @@ git_bundles.each do |url|
   `git clone #{url} #{dir}`
   FileUtils.rm_rf(File.join(dir, ".git"))
 end
+
+# Install tmux-themepack
+`git clone https://github.com/jimeh/tmux-themepack.git ~/.tmux-themepack`
+
+# Copy .tmux.conf
+`cp .tmux.conf ~/.tmux.conf`
+
+# Copy .vimrc
+`cp .vimrc ~/.vimrc`
+
+# Copy .gemrc
+`cp .gemrc ~/.gemrc`

@@ -23,20 +23,26 @@ unless File.directory?(bundles_dir)
   FileUtils.mkdir_p(bundles_dir)
 end
 
-FileUtils.cd(bundles_dir)
+FileUtils.cd(bundles_dir) do
+  puts "REMOVING EVERYTHING INSIDE (#{bundles_dir})"
+  Dir["*"].each {|d| FileUtils.rm_rf d }
 
-puts "REMOVING EVERYTHING INSIDE (#{bundles_dir})"
-Dir["*"].each {|d| FileUtils.rm_rf d }
-
-git_bundles.each do |url|
-  dir = url.split('/').last.sub(/\.git$/, '')
-  puts "  Unpacking #{url} into #{dir}"
-  `git clone #{url} #{dir}`
-  FileUtils.rm_rf(File.join(dir, ".git"))
+  git_bundles.each do |url|
+    dir = url.split('/').last.sub(/\.git$/, '')
+    puts "  Unpacking #{url} into #{dir}"
+    `git clone #{url} #{dir}`
+    FileUtils.rm_rf(File.join(dir, ".git"))
+  end
 end
 
+
+
 # Install tmux-themepack
-`git clone https://github.com/jimeh/tmux-themepack.git ~/.tmux-themepack`
+tmux_themepack = File.join(File.expand_path('~'), ".tmux-themepack")
+if File.directory?(tmux_themepack)
+  FileUtils.rm_rf(tmux_themepack)
+end
+`git clone https://github.com/jimeh/tmux-themepack.git #{tmux_themepack}`
 
 # Copy .tmux.conf
 `cp .tmux.conf ~/.tmux.conf`
